@@ -2,8 +2,8 @@ name: Scheduled Image Generator
 
 on:
   schedule:
-    # Runs every day at 08:00 UTC (Adjust as needed)
-    - cron: '0 8 * * *'
+    # Runs Monday to Friday at 02:20 UTC (Which is 07:50 AM IST)
+    - cron: '10 2 * * 1-5'
   workflow_dispatch: # Enables manual trigger button from GitHub UI
 
 jobs:
@@ -28,4 +28,4 @@ jobs:
         env:
           GDRIVE_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}
         run: |
-          papermill TEAMPLATES_3.ipynb output_executed.ipynb
+          papermill TEMPLATES.ipynb output_executed.ipynb
