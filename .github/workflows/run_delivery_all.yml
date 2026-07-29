@@ -29,7 +29,7 @@ jobs:
 
       - name: Execute Delivery Script
         run: |
-          python DELIVERY_ALL.py
+          python DELIVERY.py
 
       - name: Commit and Push Generated Post
         run: |
