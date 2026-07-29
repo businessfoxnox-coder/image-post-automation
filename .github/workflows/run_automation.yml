@@ -1,0 +1,31 @@
+name: Scheduled Image Generator
+
+on:
+  schedule:
+    # Runs every day at 08:00 UTC (Adjust as needed)
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Enables manual trigger button from GitHub UI
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install papermill jupyter pandas pillow matplotlib google-api-python-client google-auth
+
+      - name: Execute Notebook
+        env:
+          GDRIVE_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}
+        run: |
+          papermill TEAMPLATES_3.ipynb output_executed.ipynb
