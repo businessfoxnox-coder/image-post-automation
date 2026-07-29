@@ -12,6 +12,17 @@ OUTPUT_DIR = "./EOD_POSTS"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+# Clear old output files before generating fresh ones
+for filename in os.listdir(OUTPUT_DIR):
+    file_path = os.path.join(OUTPUT_DIR, filename)
+    try:
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.unlink(file_path)
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+    except Exception as e:
+        print(f"Failed to delete {file_path}. Reason: {e}")
+
 # Helper for loading fonts safely on Linux runners
 def get_font(font_size):
     font_paths = [
