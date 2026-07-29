@@ -1,0 +1,41 @@
+name: Scheduled BOD Post Generator
+
+on:
+  schedule:
+    # Set your desired time in UTC (e.g., 02:30 UTC = 08:00 AM IST)
+    - cron: '30 2 * * 1-5'
+  workflow_dispatch: # Allows manual run button in GitHub Actions UI
+
+permissions:
+  contents: write # Allows workflow to commit generated posts back to repo
+
+jobs:
+  run-bod-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas pillow matplotlib requests numpy
+          pip install --upgrade --no-cache-dir git+https://github.com/rongardF/tvdatafeed.git
+
+      - name: Execute BOD Script
+        run: |
+          python BOD_ALL.py
+
+      - name: Commit and Push Generated Posts
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add generated_posts/
+          git commit -m "Auto-generate BOD posts [skip ci]" || echo "No changes to commit"
+          git push
