@@ -36,6 +36,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add BOD_POSTS/
-          git commit -m "Auto-generate BOD posts [skip ci]" || echo "No changes to commit"
+          git add BOD_POSTS/ BOD_SLIDES/
+          git commit -m "Auto-generate BOD posts & slides [skip ci]" || echo "No changes to commit"
           git push
