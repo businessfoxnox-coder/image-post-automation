@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 # --- DIRECTORY SETUP ---
 TEMPLATE_DIR = "./generated_templates"
-OUTPUT_DIR = "./generated_posts"
+OUTPUT_DIR = "./EOD_POSTS"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
