@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # Allows workflow to push generated images
+  contents: write # Allows workflow to commit generated images back to repo
 
 jobs:
-  run-notebook:
+  run-script:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,11 +24,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install papermill jupyter pandas pillow matplotlib
+          pip install pandas pillow matplotlib
 
-      - name: Execute Notebook
+      - name: Execute Script
         run: |
-          papermill TEMPLATES.py output_executed.py
+          python TEMPLATES.py
 
       - name: Commit and Push Generated Images
         run: |
