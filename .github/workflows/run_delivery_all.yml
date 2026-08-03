@@ -3,7 +3,7 @@ name: Scheduled Delivery Post Generator
 on:
   schedule:
     # 12:00 PM UTC = 05:30 PM IST (Monday through Friday)
-    - cron: '0 12 * * 1-5'
+    - cron: '2 12 * * 1-5'
   workflow_dispatch: # Manual run trigger
 
 permissions:
