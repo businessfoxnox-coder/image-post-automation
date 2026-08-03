@@ -2,7 +2,7 @@ name: Template Generator
 
 on:
   schedule:
-    - cron: '20 2 * * 1-5' # 07:50 AM IST (Mon-Fri)
+    - cron: '22 2 * * 1-5' # 07:50 AM IST (Mon-Fri)
   workflow_dispatch:
 
 permissions:
