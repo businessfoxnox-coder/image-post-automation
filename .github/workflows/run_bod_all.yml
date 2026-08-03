@@ -3,7 +3,7 @@ name: Scheduled BOD Post Generator
 on:
   schedule:
     # Set your desired time in UTC (e.g., 02:30 UTC = 08:00 AM IST)
-    - cron: '30 2 * * 1-5'
+    - cron: '32 2 * * 1-5'
   workflow_dispatch: # Allows manual run button in GitHub Actions UI
 
 permissions:
