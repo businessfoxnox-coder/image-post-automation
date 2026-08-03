@@ -3,7 +3,7 @@ name: Scheduled EOD Post Generator
 on:
   schedule:
     # 10:10 AM UTC = 03:40 PM IST (Monday through Friday)
-    - cron: '10 10 * * 1-5'
+    - cron: '12 10 * * 1-5'
   workflow_dispatch: # Enables manual run button from GitHub Actions UI
 
 permissions:
